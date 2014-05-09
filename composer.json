@@ -1,0 +1,31 @@
+{
+    "name": "animir/php-trait-cache",
+    "description": "Cache with fastest introduce",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Animir",
+            "email": "animir@ya.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "zendframework/zend-cache": "2.3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.8.*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Animir\\": "src/"
+        }
+    }
+
+}
