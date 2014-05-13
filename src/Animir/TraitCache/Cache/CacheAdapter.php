@@ -1,13 +1,13 @@
 <?php
 
-namespace Animir\TraitCache\Cache\CacheProvider;
+namespace Animir\TraitCache\Cache;
 
 use Zend\Cache\Storage\StorageInterface;
 
-class CacheProvider implements StorageInterface
+class CacheAdapter implements StorageInterface
 {
-    
-     /**
+
+    /**
      * @var \Zend\Cache\Storage\StorageInterface
      */
     protected $cache;
@@ -22,10 +22,33 @@ class CacheProvider implements StorageInterface
         $this->cache = $cache;
         $this->config = $config;
     }
-
-    public function getItem($key)
+    
+    /**
+     * Check config for $class and $method
+     * If exists and can work with cache, return TRUE,
+     * else return FALSE
+     * 
+     * @param string $class
+     * @param string $method
+     * @return boolean
+     */
+    public function canWorkWithCache($class, $method)
     {
-        return $this->cache->getItem($key);
+        if (strpos($class, '\\')) {
+            $class = join('', array_slice(explode('\\', $class), -1));
+        }
+
+        if (array_key_exists($class, $this->config) 
+                && is_array($this->config[$class]) 
+                && array_key_exists($method, $this->config[$class])) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getItem($key, & $success = null, & $casToken = null)
+    {
+        return $this->cache->getItem($key, $success, $casToken);
     }
 
     public function setItem($key, $value)
@@ -57,89 +80,90 @@ class CacheProvider implements StorageInterface
     {
         return $this->cache->hasItems($keys);
     }
-    
+
     public function getMetadata($key)
     {
         return $this->cache->getMetadata($key);
     }
-    
+
     public function getMetadatas(array $keys)
     {
         return $this->cache->getMetadatas($keys);
     }
-    
+
     public function setItems(array $keyValuePairs)
     {
         return $this->cache->setItems($keyValuePairs);
     }
-    
+
     public function addItem($key, $value)
     {
         return $this->cache->addItem($key, $value);
     }
-    
+
     public function addItems(array $keyValuePairs)
     {
         return $this->cache->addItems($keyValuePairs);
-    }            
+    }
 
     public function replaceItem($key, $value)
     {
         return $this->cache->replaceItem($key, $value);
     }
-    
+
     public function replaceItems(array $keyValuePairs)
     {
         return $this->cache->replaceItems($keyValuePairs);
     }
-    
+
     public function checkAndSetItem($token, $key, $value)
     {
         return $this->cache->checkAndSetItem($token, $key, $value);
     }
-    
+
     public function touchItem($key)
     {
         return $this->cache->touchItem($key);
     }
-    
+
     public function touchItems(array $keys)
     {
         return $this->cache->touchItems($keys);
     }
-    
+
     public function removeItem($key)
     {
         return $this->cache->removeItem($key);
     }
-    
+
     public function removeItems(array $keys)
     {
         return $this->cache->removeItems($keys);
     }
-    
+
     public function incrementItem($key, $value)
     {
         return $this->cache->incrementItem($key, $value);
     }
-    
+
     public function incrementItems(array $keyValuePairs)
     {
         return $this->cache->incrementItems($keyValuePairs);
     }
-    
+
     public function decrementItem($key, $value)
     {
         return $this->cache->decrementItem($key, $value);
     }
-    
+
     public function decrementItems(array $keyValuePairs)
     {
         return $this->cache->decrementItems($keyValuePairs);
     }
-    
+
     public function getCapabilities()
     {
         return $this->cache->getCapabilities();
-    }    
+    }
+
 }
