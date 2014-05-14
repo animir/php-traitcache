@@ -9,6 +9,10 @@ Setup TraitCache via composer then do 3 simply steps for integration:
 
 1) Use trait 'TraitCache' in your class, like that:
 ```php
+
+use \Animir\TraitCache;
+use \Animir\TraitCache\Cache\CacheHelper;
+
 class YourClassName {
     use TraitCache;
     
