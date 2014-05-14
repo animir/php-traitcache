@@ -6,6 +6,7 @@ TraitCache is a PHP library for integration cache in your project. It use zend-c
 The goal of this library is a fast (from 5 minutes to 1 hour) integrate the cache no longer correct the code.
 
 Setup TraitCache via composer then do 3 simply steps for integration:
+
 1) Use trait 'TraitCache' in your class, like that:
 ```php
 class YourClassName {
