@@ -27,6 +27,10 @@ class YourClassName {
 Forexample, in __construct() method:
 
 ```php
+
+use \Animir\TraitCache;
+use \Animir\TraitCache\Cache\CacheHelper;
+
 class YourClassName {
     use TraitCache;
     
