@@ -76,6 +76,8 @@ trait TraitCache
         if ($this->__traitcacheIsInit && $this->__traitcacheCacheAdapter->canWorkWithCache(get_class($this), $method)) {
             $result = $this->__traitcache__work($method, $args);
             return $result;
+        } else {
+            return call_user_func_array( [$this, $method] , $args);
         }
     }
 
