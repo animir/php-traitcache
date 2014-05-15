@@ -1,5 +1,5 @@
 {
-    "name": "animir/php-trait-cache",
+    "name": "animir/php-traitcache",
     "description": "Cache with fastest introduce",
     "license": "MIT",
     "authors": [
