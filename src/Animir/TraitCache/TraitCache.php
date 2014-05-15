@@ -24,7 +24,7 @@ trait TraitCache
      * 
      * @param \Zend\Cache\Storage\StorageInterface $cache
      */
-    public function __traitcache__init(StorageInterface $cache, array $config = [] )
+    protected function __traitcache__init(StorageInterface $cache, array $config = [] )
     {
         $this->__traitcacheCacheAdapter = new CacheAdapter($cache, $config /* TODO config */);
         $this->__traitcacheIsInit = true;
@@ -52,7 +52,7 @@ trait TraitCache
         throw new \Exception('Method \'' . $method . '\' in class \'' . get_class($this) . '\' not exists');
     }
 
-    public function __traitcache__call($method, array $args)
+    protected function __traitcache__call($method, array $args)
     {
         if (CacheHelper::isTraitCacheMethodName($method)) {
             return $this->__traitcache__get($method, $args);
