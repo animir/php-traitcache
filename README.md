@@ -10,7 +10,7 @@ Setup TraitCache via composer then do 3 simply steps for integration:
 1) Use trait 'TraitCache' in your class, like that:
 ```php
 
-use \Animir\TraitCache;
+use \Animir\TraitCache\TraitCache;
 use \Animir\TraitCache\Cache\CacheHelper;
 
 class YourClassName {
@@ -28,7 +28,7 @@ Forexample, in __construct() method:
 
 ```php
 
-use \Animir\TraitCache;
+use \Animir\TraitCache\TraitCache;
 use \Animir\TraitCache\Cache\CacheHelper;
 
 class YourClassName {
@@ -41,7 +41,7 @@ class YourClassName {
             'adapter' => array(
                 'name' => 'filesystem'
             )
-        )
+        ));
         
         /* config array like 
         *      array('classNameWithoutNamespaces' => array(
@@ -53,7 +53,7 @@ class YourClassName {
         *          )
         *      )
         */
-        $config = ['YourClassName' => ['getSomeText' => [] ] ]
+        $config = ['YourClassName' => ['getSomeText' => [] ] ];
         
         $this->__traitcache__init($cache, $config);
     }
